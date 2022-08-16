@@ -13,6 +13,7 @@ type Props = {
 const MarkdownEditor = dynamic(() => import("@uiw/react-markdown-editor"), {
   ssr: false,
 });
+const url = "http://localhost:3000/api/post/testmd";
 const Home: NextPage<Props> = (props) => {
   const [value, setValue] = useState(
     props.posts[0] ? props.posts[0] : "## Hello World"
@@ -21,9 +22,20 @@ const Home: NextPage<Props> = (props) => {
     setValue(value);
   };
   const handleSave = () => {
-    console.log(value);
+    fetch(url, {
+      method: "POST",
+      body: value,
+    })
+      .then((res) => {
+        // alert(res.statusText);
+        alert("Saved");
+        console.log(res);
+      })
+      .catch((err) => {
+        alert("Could not saved.");
+        console.log(err);
+      });
   };
-  console.log(props.posts);
   return (
     <div className="h-screen">
       <MarkdownEditor
@@ -51,7 +63,6 @@ export async function getStaticProps() {
   const posts = res.map((file) => {
     const slug = file.replace(/\.md$/, "");
     const md = fs.readFileSync(path.join("posts", file), "utf8");
-    console.log(md);
     return md;
   });
   return {
