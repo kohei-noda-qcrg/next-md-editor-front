@@ -48,12 +48,12 @@ const Post: NextPage<Props> = (props) => {
         onChange={(value, _) => handleChange(value)}
         previewProps={{ rehypePlugins: [[rehypeSanitize]] }}
       />
-      <div className="pt-2">
-        <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mx-1">
+      <div className="pt-2 flex space-x-2">
+        <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
           <Link href="/">Back to Home</Link>
         </button>
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-1"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={handleSave}
         >
           Save
