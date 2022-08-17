@@ -1,25 +1,21 @@
 import type { GetServerSideProps, NextPage } from "next";
-import fs from "fs";
+import fs from "fs"
 import path from "path";
-import Link from "next/link";
+import Modal from "./modal";
+import Posts from "./posts";
 
 type Props = {
   posts: string[];
 };
 
 const Home: NextPage<Props> = (props) => {
-  return props.posts.map((post) => {
-    return (
-      <div
-        key={post}
-        className="flex flex-col items-center justify-center h-24"
-      >
-        <Link href={`/post/${post}`}>
-          <a>{post}</a>
-        </Link>
-      </div>
-    );
-  });
+  console.log(props.posts)
+  return (
+    <>
+        <Posts posts={props.posts} />
+        <Modal />
+    </>
+  )
 };
 
 export default Home;
