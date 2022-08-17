@@ -4,6 +4,16 @@ import { useCallback, useRef, useState } from "react";
 import ReactModal from "react-modal";
 
 const Modal: NextPage = () => {
+  const customStyles = {
+    content: {
+      top: "10%",
+      left: "50%",
+      right: "50%",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
   const inputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -33,10 +43,10 @@ const Modal: NextPage = () => {
       </div>
       <div className="pt-2 flex space-x-2 items-center justify-center">
         <ReactModal
-          className="h-1/5 w-1/2 items-center justify-center"
           isOpen={isOpen}
           onRequestClose={handleClose}
           onAfterOpen={handleFocusInput}
+          style={customStyles}
         >
           <input
             ref={inputRef}
