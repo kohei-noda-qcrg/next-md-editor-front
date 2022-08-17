@@ -10,6 +10,6 @@ export default function handler(
     fs.writeFileSync(path.join("posts", `${post}.md`), req.body);
     res.status(200).json({ stat: "SAVED" });
   } else {
-    res.status(404).json({ stat: "Not Found" });
+    res.status(405).json({ stat: "METHOD_NOT_ALLOWED" });
   }
 }
