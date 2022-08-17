@@ -7,6 +7,7 @@ import rehypeSanitize from "rehype-sanitize";
 import fs from "fs";
 import path from "path";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 type Props = {
   post: string;
@@ -47,12 +48,17 @@ const Post: NextPage<Props> = (props) => {
         onChange={(value, _) => handleChange(value)}
         previewProps={{ rehypePlugins: [[rehypeSanitize]] }}
       />
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={handleSave}
-      >
-        Save
-      </button>
+      <div className="pt-2">
+        <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded mx-1">
+          <Link href="/">Back to Home</Link>
+        </button>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-1"
+          onClick={handleSave}
+        >
+          Save
+        </button>
+      </div>
     </div>
   );
 };
@@ -60,12 +66,14 @@ const Post: NextPage<Props> = (props) => {
 export default Post;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const res = fs.readFileSync(path.join("posts", context.params?.post + ".md"), "utf-8").toString();
-    const props: Props = {
-        post: res,
-    };
+  const res = fs
+    .readFileSync(path.join("posts", context.params?.post + ".md"), "utf-8")
+    .toString();
+  const props: Props = {
+    post: res,
+  };
 
-    return {
-        props,
-    };
-}
+  return {
+    props,
+  };
+};

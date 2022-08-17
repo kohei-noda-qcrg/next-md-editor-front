@@ -1,12 +1,6 @@
-import dynamic from "next/dynamic";
-import "@uiw/react-markdown-editor/markdown-editor.css";
-import "@uiw/react-markdown-preview/markdown.css";
 import type { GetServerSideProps, NextPage } from "next";
-import { useState } from "react";
-import rehypeSanitize from "rehype-sanitize";
 import fs from "fs";
 import path from "path";
-import Post from "./post/[post]";
 import Link from "next/link";
 
 type Props = {
