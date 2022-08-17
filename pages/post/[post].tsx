@@ -15,9 +15,10 @@ type Props = {
 const MarkdownEditor = dynamic(() => import("@uiw/react-markdown-editor"), {
   ssr: false,
 });
-const url = "http://localhost:3000/api/post/testmd";
+const baseUrl = "http://localhost:3000/api";
 const Post: NextPage<Props> = (props) => {
   const router = useRouter();
+  const url = baseUrl + router.asPath;
   const [value, setValue] = useState(
     props.post ? props.post : "## Hello World"
   );
@@ -66,6 +67,10 @@ const Post: NextPage<Props> = (props) => {
 export default Post;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  const posts = context.params?.post;
+  if (!posts) {
+    return { props: { post: "" } };
+  }
   const res = fs
     .readFileSync(path.join("posts", context.params?.post + ".md"), "utf-8")
     .toString();
