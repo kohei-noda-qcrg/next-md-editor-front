@@ -1,5 +1,5 @@
 import type { GetServerSideProps, NextPage } from "next";
-import fs from "fs"
+import fs from "fs";
 import path from "path";
 import Modal from "./modal";
 import Posts from "./posts";
@@ -9,13 +9,13 @@ type Props = {
 };
 
 const Home: NextPage<Props> = (props) => {
-  console.log(props.posts)
+  console.log(props.posts);
   return (
     <>
-        <Posts posts={props.posts} />
-        <Modal />
+      <Posts posts={props.posts} />
+      <Modal />
     </>
-  )
+  );
 };
 
 export default Home;

@@ -5,7 +5,7 @@ type Props = {
   posts: string[];
 };
 
-const Posts = (props:Props) => {
+const Posts = (props: Props) => {
   return props.posts.map((post) => {
     return (
       <div
@@ -21,5 +21,3 @@ const Posts = (props:Props) => {
 };
 
 export default Posts;
-
-

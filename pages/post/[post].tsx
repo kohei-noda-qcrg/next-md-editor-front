@@ -19,7 +19,7 @@ const baseUrl = "http://localhost:3000/api";
 const Post: NextPage<Props> = (props) => {
   const router = useRouter();
   const url = baseUrl + router.asPath;
-  console.log(props.post)
+  console.log(props.post);
   const [value, setValue] = useState(
     props.post ? props.post : "## Hello World"
   );
@@ -74,7 +74,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
   try {
     const res = fs
-      .readFileSync(path.join("posts", context.params?.post + ".md"), {encoding: "utf8", flag: "r"})
+      .readFileSync(path.join("posts", context.params?.post + ".md"), {
+        encoding: "utf8",
+        flag: "r",
+      })
       .toString();
     const props: Props = {
       post: res,
@@ -84,8 +87,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       props,
     };
   } catch (err) {
-    console.log(err)
-    return { props: { post: "" } }
-  };
-
+    console.log(err);
+    return { props: { post: "" } };
+  }
 };
