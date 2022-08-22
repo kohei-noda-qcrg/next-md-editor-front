@@ -9,20 +9,17 @@ import path from "path";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-type Props = {
+type Post = {
   post: string;
 };
 const MarkdownEditor = dynamic(() => import("@uiw/react-markdown-editor"), {
   ssr: false,
 });
 const baseUrl = "http://localhost:3000/api";
-const Post: NextPage<Props> = (props) => {
+const Post: NextPage<Post> = ({ post }) => {
   const router = useRouter();
   const url = baseUrl + router.asPath;
-  console.log(props.post);
-  const [value, setValue] = useState(
-    props.post ? props.post : "## Hello World"
-  );
+  const [value, setValue] = useState(post ? post : "## Hello World");
   const handleChange = (value: string) => {
     setValue(value);
   };
@@ -32,7 +29,6 @@ const Post: NextPage<Props> = (props) => {
       body: value,
     })
       .then((res) => {
-        // alert(res.statusText);
         alert("Saved");
         console.log(res);
       })
@@ -75,11 +71,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   try {
     const res = fs
       .readFileSync(path.join("posts", context.params?.post + ".md"), {
-        encoding: "utf8",
+        encoding: "utf-8",
         flag: "r",
       })
       .toString();
-    const props: Props = {
+    const props: Post = {
       post: res,
     };
 

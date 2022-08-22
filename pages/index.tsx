@@ -7,7 +7,6 @@ import { PostsInterface } from "../types/posts";
 
 
 const Home: NextPage<PostsInterface> = ({ posts }) => {
-  console.log(posts);
   return (
     <>
       <Posts posts={posts} />
