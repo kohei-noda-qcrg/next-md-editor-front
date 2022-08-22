@@ -3,16 +3,14 @@ import Modal from "../components/modal";
 import Posts from "../components/posts";
 import fs from "fs";
 import path from "path";
+import { PostsInterface } from "../types/posts";
 
-type Props = {
-  posts: string[];
-};
 
-const Home: NextPage<Props> = (props) => {
-  console.log(props.posts);
+const Home: NextPage<PostsInterface> = ({ posts }) => {
+  console.log(posts);
   return (
     <>
-      <Posts posts={props.posts} />
+      <Posts posts={posts} />
       <Modal />
     </>
   );

@@ -1,10 +1,7 @@
 import Link from "next/link";
+import { PostsInterface } from "../types/posts";
 
-interface Props {
-  posts: string[];
-}
-
-const Posts = ({ posts }: Props) => {
+const Posts = ({ posts }: PostsInterface) => {
   return (
     <>
       {posts.map((post) => {
