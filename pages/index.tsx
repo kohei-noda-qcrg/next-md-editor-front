@@ -1,8 +1,8 @@
 import type { GetServerSideProps, NextPage } from "next";
+import Modal from "../components/modal";
+import Posts from "../components/posts";
 import fs from "fs";
 import path from "path";
-import Modal from "./modal";
-import Posts from "./posts";
 
 type Props = {
   posts: string[];
