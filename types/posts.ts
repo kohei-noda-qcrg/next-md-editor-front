@@ -1,3 +1,3 @@
-export interface PostsInterface {
+export interface IPosts {
     posts: string[];
 }

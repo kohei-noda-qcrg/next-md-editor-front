@@ -3,10 +3,10 @@ import Modal from "../components/modal";
 import Posts from "../components/posts";
 import fs from "fs";
 import path from "path";
-import { PostsInterface } from "../types/posts";
+import { IPosts } from "../types/posts";
 
 
-const Home: NextPage<PostsInterface> = ({ posts }) => {
+const Home: NextPage<IPosts> = ({ posts }) => {
   return (
     <>
       <Posts posts={posts} />
